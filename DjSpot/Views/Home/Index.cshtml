@@ -1,0 +1,44 @@
+﻿@model IEnumerable<ApplicationUser>
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <div style="text-align: center;">
+        <img src="~/images/DJSPOT.jpg" style="max-width: 100%; height: auto;"  />
+    </div>
+    <div class="check">
+        <hr style="height:2px;border-width:0;color:gray;background-color:blueviolet">
+        <h1 class="display-4">Check out these Djs</h1>
+    </div>
+    
+    <div class="container">
+        <div class="main-body">
+            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-xl-4 gutters-sm">
+                @foreach (ApplicationUser user in Model)
+                {
+                    @if (user.isDj)
+                    {
+                        <div class="col mb-3">
+                            <div class="card">
+                                <img src="~/images/header2.jpg" alt="Cover" class="card-img-top">
+                                <div class="userCard card-body text-center">
+                                    <img src="https://bootdey.com/img/Content/avatar/avatar7.png" style="width:100px;margin-top:-65px" alt="User" class="img-fluid img-thumbnail rounded-circle border-0 mb-3">
+                                    <a class="card-title" asp-area="" asp-controller="Home" asp-action="DjPage" asp-route-id="@user.Id">@user.UserName</a>
+                                    <p class="text-secondary mb-1">@user.Bio</p>
+                                    <p class="text-muted font-size-sm">@user.Email</p>
+                                      
+                                </div>
+                                <div class="card-footer">
+                                    @*<button class="btn btn-light btn-sm bg-white has-icon btn-block" type="button"><i class="material-icons">add</i>Follow</button>*@
+                                    <h4>@user.City, @user.State</h4>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                }
+
+            </div>
+        </div>
+    </div>
+</div>
